@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Sampah Anorganik Plastik</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #008080;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 2px solid #008080;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #008080;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #005f5f;
+        }
+        .result, .instructions {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .instructions {
+            text-align: left;
+            margin: 20px auto;
+            width: 70%;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kalkulator Keuntungan Sampah Plastik</h1>
+
+    <label for="berat">Masukkan Berat Plastik (kg):</label>
+    <input type="number" id="berat" placeholder="Masukkan berat plastik" min="0">
+
+    <label for="hargaPerKg">Harga Sampah Plastik per Kg (Rp):</label>
+    <input type="number" id="hargaPerKg" value="6000" disabled>
+
+    <h3>Hasil Perhitungan</h3>
+    <div class="result">
+        <p>Modal: Rp <span id="modal">0</span></p>
+        <p>Keuntungan: Rp <span id="keuntungan">0</span></p>
+        <p>Jumlah Kotak Pensil yang Bisa Dibuat: <span id="jumlahProduk">0</span></p>
+    </div>
+
+    <button onclick="hitung()">Hitung Keuntungan</button>
+
+    <div class="instructions">
+        <h2>Cara Membuat Kotak Pensil dari Sedotan Plastik:</h2>
+        <ol>
+            <li>Siapkan sedotan plastik dengan panjang sesuai tinggi wadah yang digunakan.</li>
+            <li>Potong sedotan jika terlalu panjang, lalu tempelkan secara vertikal di permukaan luar gelas atau wadah plastik dengan menggunakan lem tembak.</li>
+            <li>Ulangi hingga seluruh wadah tertutup sedotan.</li>
+            <li>Tambahkan pita sebagai hiasan di sekitar kotak pensil.</li>
+            <li>Kotak pensil dari sedotan plastik siap digunakan!</li>
+        </ol>
+    </div>
+
+    <script>
+        function hitung() {
+            const berat = parseFloat(document.getElementById("berat").value);
+            const hargaPerKg = 6000; // Harga tetap Rp 6000 per kg
+            const hargaProduk = 10000; // Harga kotak pensil Rp 10.000
+            const beratPerProduk = 0.05; // Asumsi 1 kotak pensil butuh 0.05 kg plastik (50 gram)
+
+            if (isNaN(berat) || berat <= 0) {
+                alert("Masukkan berat plastik yang valid!");
+                return;
+            }
+
+            // Hitung modal
+            const modal = berat * hargaPerKg;
+
+            // Hitung keuntungan
+            const keuntungan = hargaProduk - modal;
+
+            // Hitung jumlah kotak pensil yang bisa dibuat
+            const jumlahProduk = Math.floor(berat / beratPerProduk);
+
+            // Tampilkan hasil
+            document.getElementById("modal").innerText = modal;
+            document.getElementById("keuntungan").innerText = keuntungan;
+            document.getElementById("jumlahProduk").innerText = jumlahProduk;
+        }
+    </script>
+</body>
+</html>
